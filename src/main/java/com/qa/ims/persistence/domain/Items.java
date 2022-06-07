@@ -21,7 +21,7 @@ public class Items {
 		this.itemCost = itemCost;
 	}
 
-	public Long getItemsId() {
+	public Long getItemId() {
 		return itemId;
 	}
 
