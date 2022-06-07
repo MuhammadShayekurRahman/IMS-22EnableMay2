@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class Items {
 	
-	private Long itemsId;
+	private Long itemId;
 	private String itemName;
 	private double itemCost;
 	
-	public Items(Long itemsId, String itemName, double itemCost) {
+	public Items(Long itemId, String itemName, double itemCost) {
 		super();
-		this.itemsId = itemsId;
+		this.itemId = itemId;
 		this.itemName = itemName;
 		this.itemCost = itemCost;
 	}
@@ -22,11 +22,11 @@ public class Items {
 	}
 
 	public Long getItemsId() {
-		return itemsId;
+		return itemId;
 	}
 
 	public void setItemsId(Long itemsId) {
-		this.itemsId = itemsId;
+		this.itemId = itemsId;
 	}
 
 	public String getItemName() {
@@ -47,12 +47,12 @@ public class Items {
 
 	@Override
 	public String toString() {
-		return "Items [itemsId=" + itemsId + ", itemName=" + itemName + ", itemCost=" + itemCost + "]";
+		return "Items [itemsId=" + itemId + ", itemName=" + itemName + ", itemCost=" + itemCost + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(itemCost, itemName, itemsId);
+		return Objects.hash(itemCost, itemName, itemId);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class Items {
 			return false;
 		Items other = (Items) obj;
 		return Double.doubleToLongBits(itemCost) == Double.doubleToLongBits(other.itemCost)
-				&& Objects.equals(itemName, other.itemName) && Objects.equals(itemsId, other.itemsId);
+				&& Objects.equals(itemName, other.itemName) && Objects.equals(itemId, other.itemId);
 	}
 	
 	
