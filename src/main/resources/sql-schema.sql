@@ -45,3 +45,4 @@ CREATE TABLE IF NOT EXISTS order_items(
     FOREIGN KEY (f_item_id) REFERENCES items(item_id)
 
 );
+
