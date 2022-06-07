@@ -20,18 +20,29 @@ public class ItemsDao implements Dao<Items>{
 	
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	public Items itemsModelFromResultSet(ResultSet resultSet) throws SQLException{
+	@Override
+	public Items modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long itemId = resultSet.getLong("item_id");
 		String itemName = resultSet.getString("item_name");
 		double itemCost = resultSet.getDouble("item_cost");
 		return new Items(itemId, itemName, itemCost);
-		
 	}
 	
 	@Override
 	public List<Items> readAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM items");) {
+			List<Items> items = new ArrayList<>();
+			while (resultSet.next()) {
+				items.add(modelFromResultSet(resultSet));
+			}
+			return items;
+		} catch (SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return new ArrayList<>();
 	}
 
 	@Override
@@ -58,10 +69,6 @@ public class ItemsDao implements Dao<Items>{
 		return 0;
 	}
 
-	@Override
-	public Items modelFromResultSet(ResultSet resultSet) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
