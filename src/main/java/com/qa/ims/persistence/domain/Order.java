@@ -6,6 +6,8 @@ public class Order {
 
 	private long orderId;
 	private Customer customer;
+	
+	
 	public Order(long orderId, Customer customer) {
 		super();
 		this.orderId = orderId;

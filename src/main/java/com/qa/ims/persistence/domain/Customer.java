@@ -6,6 +6,7 @@ public class Customer {
 	private String firstName;
 	private String surname;
 
+	
 	public Customer(String firstName, String surname) {
 		this.setFirstName(firstName);
 		this.setSurname(surname);
@@ -15,6 +16,10 @@ public class Customer {
 		this.setId(id);
 		this.setFirstName(firstName);
 		this.setSurname(surname);
+	}
+
+	public Customer() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
