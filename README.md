@@ -1,7 +1,7 @@
-Coverage: 34%
-# Project Title
+Coverage: #%
+# Inventory Management System
 
-One Paragraph of project description goes here
+Creating an IMS which allows a user to create, read, update and delete information in Command Line.
 
 ## Getting Started
 
