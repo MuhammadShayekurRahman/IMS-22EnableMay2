@@ -56,10 +56,19 @@ public class OrderItems {
 		this.items = items;
 	}
 
+	public double orderCost() {
+		
+		
+	
+		double x = quantity * items.getItemCost();
+		return x;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "OrderItems [orderItemsId=" + orderItemsId + ", quantity=" + quantity + ", order=" + order + ", items="
-				+ items + "]";
+		return   order + ", "
+				+ items+", quantity=" + quantity + " [ORDER COST: "+ orderCost() + " ]";
 	}
 
 	@Override

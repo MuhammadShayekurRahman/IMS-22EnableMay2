@@ -73,7 +73,7 @@ public class OrderItemsController implements CrudController<OrderItems> {
 
 	@Override
 	public OrderItems update() {
-		// TODO Auto-generated method stub
+		LOGGER.info("Update not possible!");
 		return null;
 	}
 
