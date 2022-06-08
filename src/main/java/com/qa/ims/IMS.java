@@ -4,11 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.controller.Action;
+import com.qa.ims.controller.CostsController;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemsController;
 import com.qa.ims.controller.OrderController;
 import com.qa.ims.controller.OrderItemsController;
+import com.qa.ims.persistence.dao.CostsDAO;
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.ItemsDao;
 import com.qa.ims.persistence.dao.OrderDAO;
@@ -25,6 +27,7 @@ public class IMS {
 	private final ItemsController items;
 	private final OrderController order;
 	private final OrderItemsController orderItems;
+	private final CostsController costs;
 	private final Utils utils;
 
 	public IMS() {
@@ -33,10 +36,13 @@ public class IMS {
 		final ItemsDao itemsDao = new ItemsDao();
 		final OrderDAO orderDAO = new OrderDAO();
 		final OrderItemsDAO orderItemsDAO = new OrderItemsDAO();
+		final CostsDAO costsDAO = new CostsDAO();
+		
 		this.customers = new CustomerController(custDAO, utils);
 		this.items = new ItemsController(itemsDao, utils);
 		this.order = new OrderController(orderDAO, utils);
 		this.orderItems = new OrderItemsController(orderItemsDAO, utils);
+		this.costs = new CostsController(costsDAO, utils);
 	}
 
 	public void imsSystem() {
@@ -72,6 +78,9 @@ public class IMS {
 				break;
 			case ORDER_ITEM:
 				active = this.orderItems;
+				break;
+			case COSTS:
+				active = this.costs;
 				break;
 			case STOP:
 				return;
