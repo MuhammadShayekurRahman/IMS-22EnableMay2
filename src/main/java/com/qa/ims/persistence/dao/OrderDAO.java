@@ -79,9 +79,8 @@ public class OrderDAO implements Dao<Order>{
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO `order` VALUES (?, ?)");) {
-			statement.setLong(1, 0);
-			statement.setLong(2, order.getCustomer().getId());
+						.prepareStatement("INSERT INTO `order`(f_customer_id) VALUES (?)");) {
+			statement.setLong(1, order.getCustomer().getId());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -93,14 +92,18 @@ public class OrderDAO implements Dao<Order>{
 
 	@Override
 	public Order update(Order order) {
-		Customer customer = new Customer();
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE `order` SET f_customer_id = ? WHERE order_id = ?");) {
-			statement.setLong(1, customer.getId());
-			statement.setLong(2, order.getOrderId());
+			
+			Long customerId = order.getCustomer().getId();
+			Long orderId = order.getOrderId();
+			
+			
+			statement.setLong(1, customerId);
+			statement.setLong(2, orderId);
 			statement.executeUpdate();
-			return read(order.getOrderId());
+			return read(orderId);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
