@@ -42,7 +42,8 @@ public class OrderController implements CrudController<Order>{
 		
 		LOGGER.info("Please enter a Customer ID");
 		Long customerId = utils.getLong();
-		// customer.setId(customerId);
+		
+		
 		Customer customer = customerDAO.read(customerId);
 		Order order = orderDAO.create(new Order(customer));
 		LOGGER.info("Order created");
