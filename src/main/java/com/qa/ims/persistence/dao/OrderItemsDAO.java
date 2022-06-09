@@ -59,7 +59,7 @@ public class OrderItemsDAO implements Dao<OrderItems>{
 	public OrderItems readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_items ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` o left join customers c on o.f_customer_id=c.id left join order_items oi on oi.f_order_id=o.order_id left join items i on i.item_id=oi.f_item_id ORDER BY oi.order_item_id DESC LIMIT 1;");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
