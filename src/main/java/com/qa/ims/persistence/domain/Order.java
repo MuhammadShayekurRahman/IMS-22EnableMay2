@@ -6,6 +6,16 @@ public class Order {
 
 	private long orderId;
 	private Customer customer;
+	private long costs;
+	
+	
+	public Order(long orderId, Customer customer,long costs) {
+		super();
+		this.orderId = orderId;
+		this.customer = customer;
+		this.costs = costs;
+	}
+	
 	
 	
 	public Order(long orderId, Customer customer) {
@@ -13,9 +23,27 @@ public class Order {
 		this.orderId = orderId;
 		this.customer = customer;
 	}
+
+
+
+	public Order(Customer customer, long costs) {
+		super();
+		this.customer = customer;
+		this.costs = costs;
+	}
+	
+	
+	
+	
 	public Order(Customer customer) {
 		super();
 		this.customer = customer;
+	}
+	public long getCosts() {
+		return costs;
+	}
+	public void setCosts(long costs) {
+		this.costs = costs;
 	}
 	public long getOrderId() {
 		return orderId;
@@ -31,11 +59,11 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", customer=" + customer + "]";
+		return "Order [orderId=" + orderId + ", customer=" + customer + ", costs=" + costs + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(customer, orderId);
+		return Objects.hash(costs, customer, orderId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -46,8 +74,9 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return Objects.equals(customer, other.customer) && orderId == other.orderId;
+		return costs == other.costs && Objects.equals(customer, other.customer) && orderId == other.orderId;
 	}
+	
 	
 	
 	
