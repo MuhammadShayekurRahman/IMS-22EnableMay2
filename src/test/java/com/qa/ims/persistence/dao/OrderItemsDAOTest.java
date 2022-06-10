@@ -21,7 +21,7 @@ public class OrderItemsDAOTest {
 	@Before
 	public void setup() {
 		DBUtils.connect();
-		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-data.sql");
+		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-dataOI.sql");
 	}
 	
 	@Test
@@ -41,7 +41,10 @@ public class OrderItemsDAOTest {
 	
 	@Test
 	public void testReadLatest() {
-		assertEquals(new OrderItems(1L, 1L, new Order(1L, new Customer(1L, "jordan", "harrison")), new Items(1L, "Game", 10f)), DAO.readLatest());
+		
+		final Items items = new Items(1L, "Game", 10f);
+		
+		assertEquals(new OrderItems(1L, 1L, new Order(1L, new Customer(1L, "jordan", "harrison")), items), DAO.readLatest());
 	}
 
 	@Test
