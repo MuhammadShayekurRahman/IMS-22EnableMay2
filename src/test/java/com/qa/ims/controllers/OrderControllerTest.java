@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.ims.controller.OrderController;
+import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
@@ -32,17 +33,20 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testCreate() {
-		final long ORDER_ID = 1L;
+		
 		final long F_CUSTOMER_ID = 1L;
 		
-		final Order created = new Order(ORDER_ID, new Customer(1L, "firstName", "surName"), F_CUSTOMER_ID);
+		final CustomerDAO customerDAO = new CustomerDAO();
+		final Customer customer = customerDAO.read(F_CUSTOMER_ID);
 		
-		Mockito.when(utils.getLong()).thenReturn(ORDER_ID, F_CUSTOMER_ID);
+		final Order created = new Order(customer);
+		
+		Mockito.when(utils.getLong()).thenReturn(F_CUSTOMER_ID);
 		Mockito.when(dao.create(created)).thenReturn(created);
 
 		assertEquals(created, controller.create());
 
-		Mockito.verify(utils, Mockito.times(2)).getLong();
+		Mockito.verify(utils, Mockito.times(1)).getLong();
 		Mockito.verify(dao, Mockito.times(1)).create(created);
 		
 	}
@@ -61,17 +65,23 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testUpdate() {
-//		Order updated = new Order(1L, new Customer(1L, "firstName", "surName"), 1L);
-//
-//		Mockito.when(this.utils.getLong()).thenReturn(1L, 1L);
-//		Mockito.when(this.utils.getLong()).thenReturn(updated.getFirstName(), updated.getSurname());
-//		Mockito.when(this.dao.update(updated)).thenReturn(updated);
-//
-//		assertEquals(updated, this.controller.update());
-//
-//		Mockito.verify(this.utils, Mockito.times(1)).getLong();
-//		Mockito.verify(this.utils, Mockito.times(2)).getString();
-//		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
+		
+		final long F_CUSTOMER_ID = 1L;
+		
+		final CustomerDAO customerDAO = new CustomerDAO();
+		final Customer customer = customerDAO.read(F_CUSTOMER_ID);
+		
+		Order updated = new Order(1L, customer);
+
+		Mockito.when(this.utils.getLong()).thenReturn(1L);
+		Mockito.when(this.utils.getLong()).thenReturn(updated.getCustomer().getId());
+		
+		Mockito.when(this.dao.update(updated)).thenReturn(updated);
+
+		assertEquals(updated, this.controller.update());
+
+		Mockito.verify(this.utils, Mockito.times(2)).getLong();
+		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
 	}
 	
 	@Test
