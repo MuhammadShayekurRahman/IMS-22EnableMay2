@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.ItemsDao;
-import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.dao.OrderItemsDAO;
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Items;
@@ -53,7 +52,7 @@ public class OrderItemsController implements CrudController<OrderItems> {
 		Long quantity = utils.getLong();
 		
 		CustomerDAO customerDAO = new CustomerDAO();
-		OrderDAO orderDAO = new OrderDAO();
+
 		ItemsDao itemsDao = new ItemsDao();
 		
 		Items items = itemsDao.read(itemId);

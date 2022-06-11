@@ -1,6 +1,7 @@
 package com.qa.ims.persistence.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,12 @@ public class CustomerDAOTest {
 		final Customer created = new Customer(2L, "chris", "perrins");
 		assertEquals(created, DAO.create(created));
 	}
+	
+	@Test
+	public void testCreateException() {
+	final Customer customer= new Customer((long) 1.5f, "asdf","12345678911234564564564565645645647891123123");
+	assertNull(DAO.create(customer));
+	}
 
 	@Test
 	public void testReadAll() {
@@ -38,11 +45,25 @@ public class CustomerDAOTest {
 	public void testReadLatest() {
 		assertEquals(new Customer(1L, "jordan", "harrison"), DAO.readLatest());
 	}
+	
+	@Test
+	public void readLastestException() {
+		DAO.delete(1L);
+		assertNull(DAO.readLatest());
+	}
+
 
 	@Test
 	public void testRead() {
 		final long ID = 1L;
 		assertEquals(new Customer(ID, "jordan", "harrison"), DAO.read(ID));
+	}
+
+	
+	@Test
+	public void testReadException() {
+		DAO.delete(0L);
+		assertNull(DAO.read(0L));
 	}
 
 	@Test
@@ -51,9 +72,22 @@ public class CustomerDAOTest {
 		assertEquals(updated, DAO.update(updated));
 
 	}
+	
+	@Test
+	public void testUpdateException() {
+	final Customer customer= new Customer((long) 1.5f, "asdf","1234567891123456456456456456456556556591123123");
+	assertNull(DAO.update(customer));
+	}
 
 	@Test
 	public void testDelete() {
 		assertEquals(1, DAO.delete(1));
 	}
+
+	
+	@Test
+	public void testDeleteException() {
+		//assertNull(DAO.delete((long)10.5f));
+	}
+	
 }

@@ -50,7 +50,9 @@ public class OrderDAO implements Dao<Order>{
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` ORDER BY order_id DESC LIMIT 1");) {
+
+				ResultSet resultSet = statement.executeQuery("select sum(oi.quantity*i.item_cost) as Cost, o.order_id, f_customer_id, first_name, surname from `order` o left join customers c on o.f_customer_id=c.id left join order_items oi on oi.f_order_id=o.order_id left join items i on i.item_id=oi.f_item_id group by o.order_id ORDER BY order_id DESC LIMIT 1");) {
+
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -63,7 +65,9 @@ public class OrderDAO implements Dao<Order>{
 	@Override
 	public Order read(Long orderId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("SELECT * FROM `order` WHERE order_id = ?");) {
+
+				PreparedStatement statement = connection.prepareStatement("select sum(oi.quantity*i.item_cost) as Cost, o.order_id, f_customer_id, first_name, surname from `order` o left join customers c on o.f_customer_id=c.id left join order_items oi on oi.f_order_id=o.order_id left join items i on i.item_id=oi.f_item_id where order_id=? group by o.order_id ");) {
+
 			statement.setLong(1, orderId);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
