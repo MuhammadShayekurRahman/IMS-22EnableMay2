@@ -1,13 +1,13 @@
 package com.qa.ims.persistence.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-
 
 import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.utils.DBUtils;
@@ -29,6 +29,12 @@ public class ItemsDAOTest {
 	}
 	
 	@Test
+	public void testCreateException() {
+	final Items item= new Items(1L, "asdfsdjfhsjdfhskdjfhksdjfhksjdfhkjsdfhskdjfhkjsdhf", 1);
+	assertNull(DAO.create(item));
+	}
+	
+	@Test
 	public void testReadAll() {
 		List<Items> expected = new ArrayList<>();
 		expected.add(new Items(1L, "Game", 10));
@@ -38,6 +44,13 @@ public class ItemsDAOTest {
 	public void testReadLatest() {
 		assertEquals(new Items(1L, "Game", 10), DAO.readLatest());
 	}
+	
+	@Test
+	public void readLastestException() {
+		DAO.delete(1L);
+		assertNull(DAO.readLatest());
+	}
+	
 	@Test
 	public void testRead() {
 		final long ID = 1L;
@@ -45,10 +58,22 @@ public class ItemsDAOTest {
 	}
 	
 	@Test
+	public void testReadException() {
+		DAO.delete(0L);
+		assertNull(DAO.read(0L));
+	}
+	
+	@Test
 	public void testUpdate() {
 		final Items updated = new Items(1L, "Product", 10);
 		assertEquals(updated, DAO.update(updated));
 
+	}
+	
+	@Test
+	public void testUpdateException() {
+	final Items item= new Items(1L, "asdfsdjfhsjdfhskdjfhksdjfhksjdfhkjsdfhskdjfhkjsdhf", 1);
+	assertNull(DAO.update(item));
 	}
 	
 	@Test

@@ -1,6 +1,7 @@
 package com.qa.ims.persistence.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.qa.ims.persistence.domain.Customer;
-import com.qa.ims.persistence.domain.Items;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
@@ -28,10 +28,16 @@ public class OrderDAOTest {
 	@Test
 	public void testCreate() {
 	
-	
 	final Order created = new Order(2L, new Customer(1L, "jordan", "harrison"));
 	assertEquals(created, DAO.create(created));
 	}
+	
+	@Test
+	public void testCreateException() {
+		final Order order = new Order(2L, new Customer(1L, "jordan", "harrison"));
+		//assertNull(DAO.create(order));
+	}
+	
 	
 	@Test
 	public void testReadAll() {
@@ -43,6 +49,12 @@ public class OrderDAOTest {
 	@Test
 	public void testReadLatest() {
 		assertEquals(new Order(1L, new Customer(1L, "jordan", "harrison")), DAO.readLatest());
+	}
+	
+	@Test
+	public void readLastestException() {
+		DAO.delete(1L);
+		assertNull(DAO.readLatest());
 	}
 	
 	@Test
