@@ -1,11 +1,21 @@
-Coverage: #%
+Coverage: 71.1%
 # Inventory Management System
 
-Creating an IMS which allows a user to create, read, update and delete information in Command Line.
+An inventory management system which implements CRUD functionality, the purpose of this project is to be able to create an application which has a command line interface and allows a user, in this instance a data admin, to:
+* Create Customer information, an invetory of items, an Order which is assigned to customer.
+* Read all information, in an informative and clean manor.
+* Update details of Customers, Items and Orders.
+* Delete records of Customers, Items and Orders.
+* Add and remove Items purchased by a customer
+* Find the total cost of an order.
+
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+In order to run the application, the user must first clone the repository [IMS-22EnableMay2](https://github.com/MuhammadShayekurRahman/IMS-22EnableMay2).
+
 
 ### Prerequisites
 
@@ -75,6 +85,8 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Jordan Benbelaid** - *Forked Repository* - [jordanbenbelaid](https://github.com/jordanbenbelaid)
+* **Muhammad Shayekur Rahman** - *Final Project* - [muhammadshayekurrahman](https://github.com/MuhammadShayekurRahman)
 
 ## License
 
