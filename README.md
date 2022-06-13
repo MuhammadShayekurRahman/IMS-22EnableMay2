@@ -17,16 +17,24 @@ These instructions will get you a copy of the project up and running on your loc
 ## Planning
 ### Database ERD
 * Initial ERD:
-INSERT PICTURE
+
+
+![ERD version 1](https://user-images.githubusercontent.com/105277382/173213745-b3d36518-d6f6-42c4-8d41-4c2535f9ab10.png)
+
 
 * Final ERD:
-INSERT PICTURE
+
+
+![ERD version 2](https://user-images.githubusercontent.com/105277382/173213750-7a327caf-78a0-4faf-aaa4-7889291b90a6.png)
+
+
 
 The initial design consists of only 3 tables, which would create a very basic IMS. In order to create an application which allowed a user to add and delete items from an order, a 4th table 'Order_items' was created to prevent a many-to-many relationship.
 
 ### Jira
 Project management was implemented through Jira: [Project IMS](https://msrqa.atlassian.net/jira/software/projects/IMS/boards/4/roadmap?shared=&atlOrigin=eyJpIjoiNDc2ZDU4OWRlMzAwNGYyYzk2ZjliNzY4ZTI1ZDEyMTgiLCJwIjoiaiJ9)
 The use of user stories and epics allowed myself to effectively carry out tasks and stay on track.
+![image](https://user-images.githubusercontent.com/105277382/173213782-8d4114f9-cfab-4435-bec7-2023ab1161c4.png)
 
 
 ### Prerequisites
@@ -61,55 +69,48 @@ The Command Line should be opened in the parent directory, and the following lin
 
 Welcome! You should now have the invetory management system running and ready to use.
 
-INSERT PICTURE OF MENU
+![image](https://user-images.githubusercontent.com/105277382/173213885-d26b61a7-9dfc-4509-ad44-01f3129ec1ee.png)
 
 The application is seperated into 4 sections: CUSTOMER, ITEM, ORDER, ORDER_ITEMS. The user can interact by typing in Command Line to choose a feature.
 The user will then face a choice of Create, Read, Update and Delete functions. 
 
-* [Customer] -> Creating Customer example:
-INSERT CREATE PICTURE
-INSERT READ PICTURE
+* [CUSTOMER] -> Creating Customer example:
 
-* [Item] -> Creating Item example:
+![image](https://user-images.githubusercontent.com/105277382/173213988-754a9bfd-acb7-45fa-9dd2-5978b66109f7.png)
 
-* [Order] -> Creating order example:
+* [ITEM] -> Creating Item example:
 
-* [Order_ITEMS] -> Adding item to order example:
+![image](https://user-images.githubusercontent.com/105277382/173214029-a764e849-2083-4048-a2e2-a35658928025.png)
 
 
+* [ORDER] -> Creating order example:
 
-End with an example of getting some data out of the system or using it for a little demo
+![image](https://user-images.githubusercontent.com/105277382/173214067-961c7a55-994e-4ad4-81a1-80602dcbabb0.png)
+
+*The default order cost is 0 as there are no items assigned to the order.*
+
+* [ORDER_ITEM] -> Adding item to order example:
+
+![image](https://user-images.githubusercontent.com/105277382/173214107-643d3ac8-0e24-4c63-b97d-1abaee246efa.png)
+
+
+* The following shows Total Order Cost, after adding a new item to the order: [HOME] -> [ORDER] -> [READ]
+
+
+![image](https://user-images.githubusercontent.com/105277382/173214239-2649562a-a703-4749-becf-540699383771.png)
+
+* The following shows list of items in (all) orders: [HOME] -> [ORDER_ITEMS] -> [READ]
+
+
+![image](https://user-images.githubusercontent.com/105277382/173214287-e8cd57bf-f664-4dfd-a04c-fffe2b492613.png)
+
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+In order to run the tests for the project, In eclipse, the user would right click the project folder -> Coverage As -> JUnit Test.
 
-### Unit Tests 
+* There are 53 tests in total, Using JUnit Testing for Domain and DAO classes, and Mockito for Controller Classes.
 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
