@@ -1,4 +1,4 @@
-Coverage: 71.1%
+Coverage: 73.2%
 # Inventory Management System
 
 An inventory management system which implements CRUD functionality, the purpose of this project is to be able to create an application which has a command line interface and allows a user, in this instance a data admin, to:
@@ -110,6 +110,10 @@ The user will then face a choice of Create, Read, Update and Delete functions.
 In order to run the tests for the project, In eclipse, the user would right click the project folder -> Coverage As -> JUnit Test.
 
 * There are 53 tests in total, Using JUnit Testing for Domain and DAO classes, and Mockito for Controller Classes.
+
+![image](https://user-images.githubusercontent.com/105277382/173259998-a461d78c-e465-48f7-862e-8c123e0798e4.png)
+
+![image](https://user-images.githubusercontent.com/105277382/173260243-b605a8fb-e55f-4cf1-bbff-ac8146f716cf.png)
 
 
 ## Built With
